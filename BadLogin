@@ -1,0 +1,39 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class BadLogin extends JFrame{
+    public BadLogin() {
+        setTitle("登入");
+        setSize(300,200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(null);
+
+        JLabel l1=new JLabel("帳號:");
+        JTextField t1=new JTextField();
+        JLabel l2=new JLabel("密碼:");
+        JTextField t2=new JTextField();
+        JButton btn=new JButton("登入");
+
+        l1.setBounds(30, 30, 50, 25);
+        t1.setBounds(90, 30, 140, 25);
+        l2.setBounds(30, 70, 50, 25);
+        t2.setBounds(90, 70, 140, 25);
+        btn.setBounds(100, 115, 80, 30);
+
+        add(l1);add(t1);add(l2);add(t2);add(btn);
+
+        btn.addActionListener(e -> {
+            String text = new String(t2.getText());
+            if ("admin".equals(t1.getText()) && "1234".equals(text)) {
+                System.out.println("登入成功");
+            } else {
+                System.out.println("登入失敗");
+            }
+        });
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new BadLogin();
+    }
+}
