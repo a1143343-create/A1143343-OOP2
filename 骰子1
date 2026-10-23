@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class Ch17_p1 extends JFrame implements ActionListener{
+    static Ch17_p1 frm=new Ch17_p1();
+    static JButton btn=new JButton("擲骰子");
+    static JLabel lab=new JLabel("-",SwingConstants.CENTER);
+    static JLabel toplab=new JLabel("已擲 0 次，總和 0 ，平均 0.00",SwingConstants.CENTER);
+    static int sum=0;
+    static int num=0;
+
+    public static void main (String args[]){
+        frm.setLayout(new BorderLayout());
+        frm.setTitle("骰子模擬器");
+        frm.setSize(400,320);
+        frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frm.setLocationRelativeTo(null);
+
+        lab.setFont(new Font("SansSerif", Font.BOLD, 60));
+        btn.addActionListener(frm);
+
+        frm.add(toplab, BorderLayout.NORTH);
+        frm.add(lab, BorderLayout.CENTER);
+        frm.add(btn, BorderLayout.SOUTH);
+
+        frm.setVisible(true);
+    }
+    
+    public void actionPerformed(ActionEvent e){
+        int point=(int)(Math.random()*6)+1;
+        num++;
+        sum += point;
+        double avg = (double)sum/num;
+        toplab.setText(String.format("已擲 %d 次，總和 %d ，平均 %.2f",num,sum,avg));
+        lab.setText(String.valueOf(point));
+
+        if (point == 6) {
+            lab.setForeground(Color.GREEN);
+        } else if (point == 1) {
+            lab.setForeground(Color.RED);
+        } else {
+            lab.setForeground(Color.BLACK);
+        }
+    }
+}
